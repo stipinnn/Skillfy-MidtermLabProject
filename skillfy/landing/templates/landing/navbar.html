@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" 
+    {% if user.is_authenticated %}
+      href="{% url 'post-list' %}"
+    {% else %}
+      href="{% url 'index' %}"
+    {% endif %}
+    >Skillify</a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="Skillfy">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>
+
+      <!-- Logout Button (only visible when user is authenticated) -->
+      {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post" class="d-flex">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-danger">Logout</button>
+        </form>
+      {% endif %}
+      
+      <!-- Search Form -->
+      <form class="d-flex">
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon1">@</span>
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
